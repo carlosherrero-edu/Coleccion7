@@ -62,32 +62,6 @@ public class OperarMatricesTest {
 		assertArrayEquals (suma, UtilidadesMatrices.sumarMatrices(matriz5d, matriz6d));
 	}
 	
-	@Test ( )
-	public void multiplicarMatricesTest1(){
-	
-		assertNull ( UtilidadesMatrices.multiplicarMatrices(matriz6d, matriz8d));
-	}
-	
-	@Test
-	public void multiplicarMatricesTest2(){
-		double[][] B = { {2}};
-		double[][] C = { {4}};
-		assertArrayEquals ( C, UtilidadesMatrices.multiplicarMatrices(B, B));
-		
-	}
-	
-	@Test
-	public void multiplicarMatricesTest3(){
-		
-		assertArrayEquals ( matriz6d, UtilidadesMatrices.multiplicarMatrices(matriz6d, matriz2d));
-		
-	}
-	
-	@Test
-	public void multiplicarMatricesTest4(){
-		
-		assertArrayEquals ( matriz6d, UtilidadesMatrices.multiplicarMatrices(matriz2d, matriz6d));
-		
-	}
+
 
 }
