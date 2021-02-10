@@ -3,6 +3,7 @@ import static org.junit.Assert.*;
 
 
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 
 import coleccion7.UtilidadesMatrices;
 
@@ -17,10 +18,6 @@ public class OperarMatricesTest {
 	
 
 	
-	double[][] matriz2d ={ {1, 0, 0},
-							{0, 1, 0},
-							{0, 0, 1}
-							};
 
 	
 	double [][] matriz5d = { { 1, 2, 3},
@@ -42,12 +39,14 @@ public class OperarMatricesTest {
 	
 	
 	@Test ( )
+	@DisplayName("Suma de 2 matrices de diferente dimensión")
 	public void sumarMatricesTest1(){
 	
 		assertNull(UtilidadesMatrices.sumarMatrices(matriz5d, matriz7d));
 	}
 	
 	@Test
+	@DisplayName("Suma de 2 matrices de dimensión 1X1")
 	public void sumarMatricesTest2(){
 		double[][] A = { {1}};
 		double[][] B = { {2}};
@@ -55,7 +54,7 @@ public class OperarMatricesTest {
 		assertArrayEquals (suma, UtilidadesMatrices.sumarMatrices(A, B));
 	}
 	
-	@Test
+	@Test@DisplayName("Suma de 2 matrices de dimensión 3X3")
 	public void sumarMatricesTest3(){
 		
 		double[][] suma = { {2, 6, 10} , {6, 10, 14}, {10, 14, 18}};

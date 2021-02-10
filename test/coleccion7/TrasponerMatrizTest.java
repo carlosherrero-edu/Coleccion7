@@ -3,6 +3,7 @@ package coleccion7;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 
 import coleccion7.UtilidadesMatrices;
 
@@ -31,41 +32,45 @@ double[][] matriz1d ={ {1}};
 							{ 3, 6, 9}
 			};
 	
-	double [][] matriz7d = { { 1, 2, 3, 4},
-							{ 5, 6, 7, 8}
-							};
 	
-	double [][] matriz8d = { { 1, 5}, { 2,6} , {3, 7} ,   {4,8}};
+	double [][] matrizSimetrica = { {10, 9, 8}, {9, 20, 7}, {8,7, 30 }};
 	
 
 	@Test
+	@DisplayName("Probamos a trasponer una matriz de 1X1")
 	public void testTrasponerMatriz1() {
 		double[][] traspuesta = UtilidadesMatrices.trasponerMatriz(matriz1d);
 		assertArrayEquals(traspuesta, matriz1d);
 	}
 	
 	@Test
+	@DisplayName("Probamos a trasponer una matriz de 1X4")
 	public void testTrasponerMatriz2() {
+		
 		double[][] traspuesta = UtilidadesMatrices.trasponerMatriz(matriz3d);
 		assertArrayEquals(traspuesta, matriz4d);
 	}
 	
 	@Test
+	@DisplayName("Probamos a trasponer una matriz de 4X1")
 	public void testTrasponerMatriz3() {
 		double[][] traspuesta = UtilidadesMatrices.trasponerMatriz(matriz4d);
 		assertArrayEquals(traspuesta, matriz3d);
 	}
 	
 	@Test
+	@DisplayName("Probamos a trasponer una matriz de 3X3")
 	public void testTrasponerMatriz4() {
 		double[][] traspuesta = UtilidadesMatrices.trasponerMatriz(matriz5d);
 		assertArrayEquals(traspuesta, matriz6d);
 	}
 	
 	@Test
+	@DisplayName("Probamos a trasponer una matriz simétrica... debe dar la propia matriz")
 	public void testTrasponerMatriz5() {
-		double[][] traspuesta = UtilidadesMatrices.trasponerMatriz(matriz7d);
-		assertArrayEquals(traspuesta, matriz8d);
+		
+		double[][] traspuesta = UtilidadesMatrices.trasponerMatriz(matrizSimetrica);
+		assertArrayEquals(traspuesta,matrizSimetrica);
 	}
 
 }

@@ -2,6 +2,7 @@ package coleccion7;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 
 import coleccion7.UtilidadesMatrices;
 
@@ -17,12 +18,14 @@ public class MatrizAsteriscosTest {
 	final char BLANCO=' ';
 	final char ESTRELLA='*';
 	
-	@Test ()
+	@Test 
+	@DisplayName("Probando con una entrada no válida")
 	public void testMatrizAsteriscos1() {
 		assertNull(UtilidadesMatrices.obtenerMatrizAsteriscos(-10));
 	}
 	
 	@Test
+	@DisplayName("Probando con matriz de 1 fila")
 	public void testMatrizAsteriscos2() {
 		char[][] resultado= UtilidadesMatrices.obtenerMatrizAsteriscos(1);
 		char[][] esperado = { {ESTRELLA}};
@@ -30,6 +33,7 @@ public class MatrizAsteriscosTest {
 	}
 	
 	@Test
+	@DisplayName("Probando con matriz de 3 filas")
 	public void testMatrizAsteriscos3() {
 		char[][] resultado= UtilidadesMatrices.obtenerMatrizAsteriscos(3);
 		char[][] esperado = { {BLANCO, BLANCO, ESTRELLA, BLANCO, BLANCO},
@@ -40,6 +44,7 @@ public class MatrizAsteriscosTest {
 	}
 	
 	@Test
+	@DisplayName("Probando con matriz de 4 filas")
 	public void testMatrizAsteriscos4() {
 		char[][] resultado= UtilidadesMatrices.obtenerMatrizAsteriscos(4);
 		char[][] esperado = { {BLANCO, BLANCO, BLANCO, ESTRELLA, BLANCO, BLANCO, BLANCO},
