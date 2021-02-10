@@ -54,7 +54,6 @@ public class UtilidadesMatrices {
 
 		// creamos antes del bucle la variable que contará las filas
 		int i = 0;
-		
 
 		for (int j = 0; j < matrizEnteros[0].length; j++) {
 			for (i = 0; i < matrizEnteros.length; i++) {
@@ -75,8 +74,26 @@ public class UtilidadesMatrices {
 	 */
 	public static int[][] obtenerMatrizIdentidad(int dimension) {
 
-		return null;
-	} // aqu� finaliza el m�todo.
+		int[][] matrizIdentidad;
+		int filas, columnas;
+		filas = dimension;
+		columnas = dimension;
+		matrizIdentidad = new int[filas][columnas];
+
+		for (int i = 0; i < filas; i++) {
+
+			for (int j = 0; j < columnas; j++) {
+				if (i == j) {
+					matrizIdentidad[i][j] = 1;
+				} else {
+					matrizIdentidad[i][j] = 0;
+				}
+			}
+
+		}
+
+		return dimension > 0 ? matrizIdentidad : null;
+	}
 
 	// Ejercicio4
 	/**
