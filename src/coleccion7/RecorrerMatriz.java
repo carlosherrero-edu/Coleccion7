@@ -6,129 +6,74 @@ import java.util.Scanner;
 
 public class RecorrerMatriz {
 
-	static final int dimension = 5;
-
-	static int[][] matriz;
-
-	static Scanner teclado = new Scanner(System.in);
-
 	/**
-	 * Objeto statico sr -> SecureRandom();
+	 * matriz se define como estático para que tenga el mismo valor durante toda la
+	 * clase
 	 */
-	static SecureRandom sr = new SecureRandom();
+	static int[][] matriz = { { 1, 3, 5, 7 }, { 2, 4, 6, 8 }, { 3, 5, 7, 9 }, { 4, 6, 8, 0 } };
 
 	/**
-	
+	 * 
 	 * @param dimensiones
 	 * @return array relleno con numeros aleatorios 0-9
 	 **/
 
-	public static int[][] rellenarMatriz(int dimensiones) {
+	static int[][] rellenarMatriz(int dimensiones) {
 
 		return null;
 	}
 
+	static int generarValor() {
+		return 0;
+	}
+
 	/**
-	 * Método para solicitar una opción de menú y devolverla al programa
-	 * principal
+	 * Método para solicitar una opción de menú y devolverla al programa principal
 	 * 
 	 * @return: entero de 1-7 con la opción elegida
 	 */
 	static int mostrarMenu() {
 
-		int opcion;
-
-		String[] opciones = { "Mostrar la matriz",
-				"Recorrer la diagonal principal",
-				"Recorrer la diagonal secundaria", "Recorrer el perímetro",
-				"Recorrer en espiral", "Obtener la moda", "Salir" };
-
-		System.out.println("\n\n Menú de opciones");
-		System.out.println("_________________");
-
-		for (int i = 0; i < opciones.length; i++) {
-			System.out.format("%n Opción %1d : %s ", (i + 1), opciones[i]);
-		}
-
-		boolean opcionCorrecta = false;
-
-		do {
-			System.out.print("\n Elige una opción \n -->");
-
-			opcion = teclado.nextInt();
-
-			if (opcion < 1 || opcion > 7) {
-				System.out
-						.println("Has elegido una opción incorrecta . Escríbela de nuevo");
-
-			} else {
-				opcionCorrecta = true;
-			}
-		} while (!opcionCorrecta);
-
-		return opcion;
+		return 0;
 
 	} // fin del método mostrarMenú
 
-	/**
-	 * @author Talia Imprime una matriz
-	 * @param m
-	 *            método void
-	 */
+	static void mostrarMatriz(int[][] matriz) {
 
-	public static void mostrarMatriz(int[][] matriz) {
-
-		
-		
 	} // fin de método
 
-	public static int[] recorrerDiagonal(int[][] matriz, boolean esPrincipal) {
+	static int[] obtenerModa(int[][] matriz) {
+
+		return null;
+
+	}
+
+	static int[] obtenerDiagonalPrincipal(int[][] matriz) {
 
 		return null;
 	}
 
-	public static int[] recorrerPerimetro(int[][] matriz) {
+	static int[] obtenerDiagonalSecundaria(int[][] matriz) {
+
+		return null;
+	}
+
+	static int[] obtenerPerimetro(int[][] matriz) {
+
 		return null;
 
 	}
 
-	// hay un metodo para copiar matrices parciales, pero lo escribo a mano
-	public static int[] recorrerEspiral(int[][] matriz) {
+	static int[] recorrerEspiral(int[][] matriz) {
+
 		return null;
 	}
-
-	
-
-	public static int calcularModaArray(int[][] matriz) {
-
-
-
-		return 0;
-
-	}
-
-	
-
-	/**
-	 * @author Gero Vacia la matriz...
-	 **/
-	public static void salir() {
-		matriz = null;
-	}
-
-	static void imprimirListaEnteros(int[] lista) {
-		
-		
-	}
-
-			
-	
 
 	public static void main(String[] args) {
 
-		// inicialmente hay que cargar la matriz
+		// inicialmente trabajaremos con una matriz constant
 
-		matriz = rellenarMatriz(dimension);
+		// matriz = rellenarMatriz(dimension);
 
 		int opcion;
 		int[] listaEnteros;
@@ -141,40 +86,34 @@ public class RecorrerMatriz {
 			case 1:
 				mostrarMatriz(matriz);
 				break;
-			case 2:
-				listaEnteros = recorrerDiagonal(matriz, true);
-				System.out.println("La diagonal principal es:");
-				imprimirListaEnteros(listaEnteros);
-				break;
-			case 3:
-				listaEnteros = recorrerDiagonal(matriz, false);
-				System.out.println("La diagonal secundaria es:");
-				imprimirListaEnteros(listaEnteros);
-				break;
-			case 4:
-				listaEnteros = recorrerPerimetro(matriz);
 
-				System.out.println("El perímetro es:");
-				imprimirListaEnteros(listaEnteros);
+			case 2:
+				listaEnteros = obtenerDiagonalPrincipal(matriz);
+
+				break;
+
+			case 3:
+				listaEnteros = obtenerDiagonalSecundaria(matriz);
+
+				break;
+
+			case 4:
+
+				listaEnteros = obtenerPerimetro(matriz);
+
 				break;
 			case 5:
-				listaEnteros = recorrerEspiral(matriz);
+				listaEnteros = obtenerModa(matriz);
 
-				System.out.println("La matriz recorrida en espiral es");
-				imprimirListaEnteros(listaEnteros);
 				break;
 			case 6:
-				int moda = calcularModaArray(matriz);
-				System.out.println("La moda es : " + moda);
+				// este método es un bonus. Si no se desarrolla, no se tendrá en el menú
+				listaEnteros = recorrerEspiral(matriz);
 				break;
 
 			}
 
 		} while (opcion != 7);
-
-		// cuando nos salgamos, vaciamos la matriz
-		salir();
-		teclado.close();
 
 	} // fin del método main
 

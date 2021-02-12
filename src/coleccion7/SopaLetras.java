@@ -1,25 +1,35 @@
 package coleccion7;
 
 public class SopaLetras {
-	
+
 	static String obtenerPalabra() {
-		
+
 		return null;
 	}
-	
-	static boolean validarPalabra(String palabra) {
-		
-		return false;
-	}
-	
-	static char[][] rellenarSopa (String palabra){
-		
+
+	static char[][] generarSopa(String palabra) {
+
 		return null;
 	}
-	
-	static void imprimirSopa (char[][] sopa) {
-		
-		
+
+	static char[][] rellenarMatriz() {
+
+		return null;
+	}
+
+	static int[] elegirPosicion() {
+
+		return null;
+	}
+
+	static char[][] insertarPalabra(char[][] sopa, String palabra, int[] posicion) {
+		// este método puede también plantearse como void
+
+		return null;
+	}
+
+	static void imprimirSopa(char[][] sopa) {
+
 	}
 
 	public static void main(String[] args) {
