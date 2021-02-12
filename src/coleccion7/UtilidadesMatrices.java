@@ -106,12 +106,46 @@ public class UtilidadesMatrices {
 	 * @return una matriz de carateres con asteriscos y blancos Corresponde a
 	 *         Colección 7, Ejercicio 4
 	 */
+	/*
+	 * Método para recibir como entrada un número entero mayor que cero y que
+	 * construya una matriz bidimensional rellenada con asteriscos, que conste del
+	 * número de filas pasado como argumento
+	 * 
+	 * @Author Albertto Del Pozo
+	 * 
+	 * @see MatrizAsteriscosTest
+	 */
+
 	public static char[][] obtenerMatrizAsteriscos(int filas) {
-		final char BLANCO = ' ';
-		final char ASTERISCO = '*';
 
-		return null;
+		int columnas = 2 * filas - 1;
 
+		boolean validarFilas = false;
+
+		if (filas > 0) {
+			validarFilas = true;
+		} else {
+			System.out.println("El número de filas que debe introducir debe ser impar");
+			return null;
+		}
+
+		char matriz[][] = new char[filas][columnas];
+
+		int mitad = matriz[0].length / 2;
+
+		for (int i = 0; i < matriz.length; i++) {
+			for (int j = 0; j < matriz[0].length; j++) {
+				if ((i + j) >= mitad && (j - i) <= mitad) {
+					matriz[i][j] = '*';
+				} else {
+					matriz[i][j] = ' ';
+				}
+				System.out.print(matriz[i][j] + " ");
+			}
+			System.out.println();
+		}
+
+		return matriz;
 	}
 
 	/**
@@ -121,10 +155,53 @@ public class UtilidadesMatrices {
 	 * @param segunda : segunda matriz
 	 * @return: referencia a la matriz uma de las dos devuelve null si las 2
 	 *          matrices no tienen igual dimensión Corresponde a Colección 7,
-	 *          Ejercicio 5
+	 *          Ejercicio 5 Irene Cárdenas-- corregido tipo de matrizResultado En
+	 *          lugar de devolver null, lanza una excepción
 	 */
 	public static double[][] sumarMatrices(double[][] primera, double[][] segunda) {
-		return null;
+		double[][] matrizResultado;
+		int filasA = primera.length;
+		int columnasA = primera[0].length;
+
+		int filasB = segunda.length;
+		int columnasB = segunda[0].length;
+
+		System.out.println("Primera matriz:");
+		for (int i = 0; i < filasA; i++) {
+			for (int j = 0; j < columnasA; j++) {
+				System.out.print(primera[i][j] + "   ");
+			}
+			System.out.println("");
+		}
+
+		System.out.println("Segunda matriz:");
+		for (int i = 0; i < filasB; i++) {
+			for (int j = 0; j < columnasB; j++) {
+				System.out.print(segunda[i][j] + "   ");
+			}
+			System.out.println("");
+		}
+
+		if (filasA == filasB && columnasB == columnasA) {
+
+			matrizResultado = new double[filasA][columnasA];
+			for (int i = 0; i < filasA; i++) {
+				for (int j = 0; j < columnasA; j++) {
+					matrizResultado[i][j] = primera[i][j] + segunda[i][j];
+				}
+			}
+
+		} else {
+			throw new Error("Las matrices deben tener la misma cantidad de filas que columnas");
+		}
+		System.out.println("Matriz resultado:");
+		for (int i = 0; i < filasA; i++) {
+			for (int j = 0; j < columnasA; j++) {
+				System.out.print(matrizResultado[i][j] + "   ");
+			}
+			System.out.println("");
+		}
+		return matrizResultado;
 	}
 
 	/**
@@ -151,9 +228,28 @@ public class UtilidadesMatrices {
 	 *          número de columnas de A difiere del número de filas de B Corresponde
 	 *          a Colección 7, Ejercicio 7
 	 */
-	public static double[][] multiplicarMatrices(double[][] A, double[][] B) {
+	public static double[][] multiplicarMatrices(double[][] matriz1, double[][] matriz2) {
 
-		return null;
+		double[][] matrizNueva = new double[matriz1.length][matriz2[0].length];
+
+		if (matriz1.length != matriz2[0].length) {
+			matrizNueva = null;
+		} else {
+			for (int i = 0; i < matriz1.length; i++) {
+
+				for (int j = 0; j < matriz2[0].length; j++) {
+
+					for (int k = 0; k < matriz1[0].length; k++) {
+
+						matrizNueva[i][j] += (matriz1[i][k] * matriz2[k][j]);
+					}
+
+				}
+
+			}
+		}
+
+		return matrizNueva;
 	}
 
 	/**
