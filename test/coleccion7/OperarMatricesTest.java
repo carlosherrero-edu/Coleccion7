@@ -17,7 +17,10 @@ import coleccion7.UtilidadesMatrices;
 public class OperarMatricesTest {
 	
 
-	
+	double[][] matriz2d ={ {1, 0, 0},
+			{0, 1, 0},
+			{0, 0, 1}
+			};
 
 	
 	double [][] matriz5d = { { 1, 2, 3},
@@ -60,6 +63,39 @@ public class OperarMatricesTest {
 		double[][] suma = { {2, 6, 10} , {6, 10, 14}, {10, 14, 18}};
 		assertArrayEquals (suma, UtilidadesMatrices.sumarMatrices(matriz5d, matriz6d));
 	}
+	
+	@Test ( )
+	@DisplayName("Producto de 2 matrices donde columnas(matriz1) <> filas (matriz2)")
+	public void multiplicarMatricesTest1(){
+	
+		assertNull ( UtilidadesMatrices.multiplicarMatrices(matriz6d, matriz8d));
+	}
+	
+	@Test
+	@DisplayName("Multiplicamos 2 matrices de dimensión 1")
+	public void multiplicarMatricesTest2(){
+		double[][] B = { {2}};
+		double[][] C = { {4}};
+		assertArrayEquals ( C, UtilidadesMatrices.multiplicarMatrices(B, B));
+		
+	}
+	
+	@Test
+	@DisplayName("Multiplicamos  una matriz 3X3 por la matriz unidad")
+	public void multiplicarMatricesTest3(){
+		
+		assertArrayEquals ( matriz6d, UtilidadesMatrices.multiplicarMatrices(matriz6d, matriz2d));
+		
+	}
+	
+	@Test
+	@DisplayName("Multiplicamos   la matriz unidad por una matriz 3X3, para probar la conmutatividiad")
+	public void multiplicarMatricesTest4(){
+		
+		assertArrayEquals ( matriz6d, UtilidadesMatrices.multiplicarMatrices(matriz2d, matriz6d));
+		
+	}
+
 	
 
 
