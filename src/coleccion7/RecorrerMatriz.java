@@ -13,15 +13,20 @@ public class RecorrerMatriz {
 	 * clase
 	 */
 	static int[][] matriz;
+	static SecureRandom secureRandom;
+	static final int VALOR_MAXIMO = 9;
+	static Scanner scanner = new Scanner(System.in);
 
 	/**
 	 * 
 	 * @param dimensiones
-	 * @return array relleno con numeros aleatorios 0-9
-	 * Alfredo Puerta
+	 * @return array relleno con numeros aleatorios 0-9 Alfredo Puerta
 	 **/
 
 	static int[][] rellenarMatriz(int dimensiones) {
+
+		// inicializamos el objeto SecureRandom
+		secureRandom = new SecureRandom();
 
 		int[][] matrizRellena = new int[dimensiones][dimensiones];
 
@@ -34,25 +39,25 @@ public class RecorrerMatriz {
 	}
 
 	/**
-	 * Alfredo Puerta
+	 * @author Alfredo Puerta
 	 * @return
 	 */
 	static int generarValor() {
-		SecureRandom secureRandom = new SecureRandom();
-		return secureRandom.nextInt(10);
+
+		return secureRandom.nextInt(VALOR_MAXIMO + 1);
 	}
 
 	/**
 	 * Método para solicitar una opción de menú y devolverla al programa principal
 	 * 
-	 * @return: entero de 1-7 con la opción elegida 
-	 * Mauricio Rodríguez
+	 * @return: entero de 1-7 con la opción elegida
+	 * @author Mauricio Rodríguez
 	 */
 	static int mostrarMenu() {
 
 		int eleccion;
 		do {
-			System.out.println("Listado de opciones: ");
+			System.out.println("\n\n Listado de opciones: ");
 			System.out.println("1 - Mostrar Matriz.");
 			System.out.println("2 - Obtener diagonal principal.");
 			System.out.println("3 - Obtener diagonal secundaria.");
@@ -60,8 +65,8 @@ public class RecorrerMatriz {
 			System.out.println("5 - Obtener moda.");
 			System.out.println("6 - Recorrer espiral.");
 			System.out.println("7 - Salir");
-			System.out.println("Elige una opción. 7 para Salir:");
-			Scanner scanner = new Scanner(System.in);
+			System.out.print("Elige una opción. 7 para Salir: >>>");
+
 			eleccion = scanner.nextInt();
 		} while (eleccion < 1 || eleccion > 7);
 
@@ -70,7 +75,7 @@ public class RecorrerMatriz {
 	} // fin del método mostrarMenú
 
 	/**
-	 * Alfredo Puerta
+	 * @author Alfredo Puerta
 	 * @param matriz
 	 */
 	static void mostrarMatriz(int[][] matriz) {
@@ -84,40 +89,43 @@ public class RecorrerMatriz {
 	} // fin de método
 
 	/**
-	 * Luis Monzón
+	 * @author Luis Monzón
+	 * 
 	 * @param matriz
 	 * @return
 	 */
-	static int[] obtenerModa(int[][] matriz) {
+	static int obtenerModa(int[][] matriz) {
 
-		int[] moda = new int[3];
-		int[] frecuenciasModa = new int[10];
+		int moda, frecuenciaMax;
+		int[] frecuenciasModa = new int[VALOR_MAXIMO+1];
 
-		// Recorrer matriz
+		// Recorrer matriz y obtener las frecuencias de cada valor
 		for (int i = 0; i < matriz.length; i++) {
 			for (int j = 0; j < matriz[0].length; j++) {
-				frecuenciasModa[matriz[i][j]]++;
+				frecuenciasModa[matriz[i][j]]++; // Obtener repeticion de valores en la matriz
 			}
 
 		}
+		
+		moda=0;
+		frecuenciaMax = frecuenciasModa[0];
 
+		// Obtener la moda
 		for (int i = 0; i < frecuenciasModa.length; i++) {
-			for (int j = frecuenciasModa.length; j >= 0; j--) {
-				if (frecuenciasModa[i] < frecuenciasModa[j]) {
-					moda[0] = frecuenciasModa[j];
-
-				} else {
-					moda[0] = frecuenciasModa[i];
-				}
+			if (frecuenciaMax < frecuenciasModa[i]) {
+				frecuenciaMax = frecuenciasModa[i];
+				moda=i;
 			}
 		}
 
 		return moda;
 
+	
+
 	}
 
 	/**
-	 * Mauricio Rodríguez
+	 * @author Mauricio Rodríguez
 	 * @param matriz
 	 * @return
 	 */
@@ -136,7 +144,7 @@ public class RecorrerMatriz {
 	}
 
 	/**
-	 * Mauricio Rodríguez
+	 * @author Mauricio Rodríguez
 	 * @param matriz
 	 * @return
 	 */
@@ -145,7 +153,7 @@ public class RecorrerMatriz {
 		int[] diagonalSecundaria = new int[matriz.length];
 		for (int i = 0; i < matriz.length; i++) {
 			for (int j = 0; j < matriz[i].length; j++) {
-				if (i + j == matriz.length - 1) {
+				if ((i + j) == (matriz.length - 1)) {
 					diagonalSecundaria[i] = matriz[i][j];
 				}
 			}
@@ -153,9 +161,9 @@ public class RecorrerMatriz {
 
 		return diagonalSecundaria;
 	}
-	
+
 	/**
-	 * Luis Monzón
+	 * @author Luis Monzón
 	 * @param matriz
 	 * @return
 	 */
@@ -163,24 +171,29 @@ public class RecorrerMatriz {
 	static int[] obtenerPerimetro(int[][] matriz) {
 
 		int[] perimetro = new int[matriz.length * 2 + (2 * (matriz.length - 2))];
+		int posicion = 0;
 
 		// Recorrer la primera fila
 		for (int i = 0; i < matriz.length; i++) {
-			perimetro[i] = matriz[0][i];
+			perimetro[posicion] = matriz[0][i];
+			posicion++;
 		}
 
 		// Recorrer ultima columna
-		for (int i = 0; i < matriz.length; i++) {
-			perimetro[i] = matriz[i][matriz.length - 1];
+		for (int i = 1; i < matriz.length; i++) {
+			perimetro[posicion] = matriz[i][matriz.length - 1];
+			posicion++;
 		}
 		// Recorrer la ultima fila
-		for (int i = matriz.length; i >= 0; i--) {
-			perimetro[i] = matriz[matriz.length - 1][i];
+		for (int i = matriz.length - 2; i >= 0; i--) {
+			perimetro[posicion] = matriz[matriz.length - 1][i];
+			posicion++;
 		}
 
 		// Recorrer primera columna
-		for (int i = matriz.length; i >= 0; i--) {
-			perimetro[i] = matriz[i][0];
+		for (int i = matriz.length - 2; i > 0; i--) {
+			perimetro[posicion] = matriz[i][0];
+			posicion++;
 		}
 
 		return perimetro;
@@ -191,36 +204,35 @@ public class RecorrerMatriz {
 
 		return null;
 	}
-	
-	static void recorrerLista (int [] lista, String mensaje) {
-		
+
+	static void recorrerLista(int[] lista, String mensaje) {
+
 		System.out.println(mensaje);
 		System.out.println();
-		for (int valor: lista) {
+		for (int valor : lista) {
 			System.out.format(" %2d ", valor);
 		}
 		System.out.println();
-		
-		
-		
+
 	}
 
 	public static void main(String[] args) {
 
-		//inicialmente trabajaremos con una matriz constante
-				int dimension = 0;
-				
-				//bucle para la validación de las dimensiones introducidas por teclado (@author AlfredoPuerta)
-				while(dimension < 3) {
-					dimension = Integer.parseInt(JOptionPane.showInputDialog("Introduzca la dimensión de la matriz: "));
+		// inicialmente trabajaremos con una matriz constante
+		int dimension = 0;
 
-					if(dimension >= 3) {
-						matriz = rellenarMatriz(dimension);
-					} else {
-						System.out.println("Se necesita un número mayor o igual a 3. Pruebe de nuevo");
-					}
-				}
-				mostrarMatriz(matriz);
+		// bucle para la validación de las dimensiones introducidas por teclado (@author
+		// AlfredoPuerta)
+		while (dimension < 3) {
+			dimension = Integer.parseInt(JOptionPane.showInputDialog("Introduzca la dimensión de la matriz: "));
+
+			if (dimension >= 3) {
+				matriz = rellenarMatriz(dimension);
+			} else {
+				System.out.println("Se necesita un número mayor o igual a 3. Pruebe de nuevo");
+			}
+		}
+		//mostrarMatriz(matriz);
 
 		int opcion;
 		int[] listaEnteros;
@@ -253,8 +265,7 @@ public class RecorrerMatriz {
 
 				break;
 			case 5:
-				listaEnteros = obtenerModa(matriz);
-				recorrerLista(listaEnteros, "Moda de la matriz de elementos");
+				System.out.println("La moda es :  " + obtenerModa(matriz));
 
 				break;
 			case 6:
@@ -265,6 +276,11 @@ public class RecorrerMatriz {
 			}
 
 		} while (opcion != 7);
+		
+		//cuando salgamos, eliminamos los objetos abiertos
+		scanner.close();
+		secureRandom=null;
+		System.out.println("GRacias por usar mi programa. Hasta la próxima...");
 
 	} // fin del método main
 

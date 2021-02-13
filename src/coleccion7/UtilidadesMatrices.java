@@ -105,16 +105,10 @@ public class UtilidadesMatrices {
 	 * @param filas entero con el número de filas que queremos imprimir
 	 * @return una matriz de carateres con asteriscos y blancos Corresponde a
 	 *         Colección 7, Ejercicio 4
-	 */
-	/*
-	 * Método para recibir como entrada un número entero mayor que cero y que
-	 * construya una matriz bidimensional rellenada con asteriscos, que conste del
-	 * número de filas pasado como argumento
-	 * 
-	 * @Author Albertto Del Pozo
-	 * 
+	 * @author Alberto del Pozo
 	 * @see MatrizAsteriscosTest
 	 */
+	
 
 	public static char[][] obtenerMatrizAsteriscos(int filas) {
 
@@ -155,10 +149,10 @@ public class UtilidadesMatrices {
 	 * @param segunda : segunda matriz
 	 * @return: referencia a la matriz uma de las dos devuelve null si las 2
 	 *          matrices no tienen igual dimensión Corresponde a Colección 7,
-	 *          Ejercicio 5 Irene Cárdenas-- corregido tipo de matrizResultado En
-	 *          lugar de devolver null, lanza una excepción
+	 * @author Irene Cárdenas
+	 * @throws Exception 
 	 */
-	public static double[][] sumarMatrices(double[][] primera, double[][] segunda) {
+	public static double[][] sumarMatrices(double[][] primera, double[][] segunda)  {
 		double[][] matrizResultado;
 		int filasA = primera.length;
 		int columnasA = primera[0].length;
@@ -166,21 +160,7 @@ public class UtilidadesMatrices {
 		int filasB = segunda.length;
 		int columnasB = segunda[0].length;
 
-		System.out.println("Primera matriz:");
-		for (int i = 0; i < filasA; i++) {
-			for (int j = 0; j < columnasA; j++) {
-				System.out.print(primera[i][j] + "   ");
-			}
-			System.out.println("");
-		}
 
-		System.out.println("Segunda matriz:");
-		for (int i = 0; i < filasB; i++) {
-			for (int j = 0; j < columnasB; j++) {
-				System.out.print(segunda[i][j] + "   ");
-			}
-			System.out.println("");
-		}
 
 		if (filasA == filasB && columnasB == columnasA) {
 
@@ -192,14 +172,8 @@ public class UtilidadesMatrices {
 			}
 
 		} else {
-			throw new Error("Las matrices deben tener la misma cantidad de filas que columnas");
-		}
-		System.out.println("Matriz resultado:");
-		for (int i = 0; i < filasA; i++) {
-			for (int j = 0; j < columnasA; j++) {
-				System.out.print(matrizResultado[i][j] + "   ");
-			}
-			System.out.println("");
+			throw new RuntimeException("Las matrices deben tener la misma cantidad de filas que columnas");
+		
 		}
 		return matrizResultado;
 	}
@@ -211,11 +185,24 @@ public class UtilidadesMatrices {
 	 * @param original matriz -bidimensional- de números decimales
 	 * @return matriz bidimensional traspuesta, con sus dimensiones cambiadas
 	 *         Corresponde a Colección 7, Ejercicio 6
+	 * @author Ruba Mulla
+	 * 
 	 */
 
-	public static double[][] trasponerMatriz(double[][] original) {
 
-		return null;
+	public static double[][] trasponerMatriz(double[][] Original) 
+	{
+
+		double[][] resultado = new double[Original[0].length][Original.length];
+
+		for (int j = 0; j < Original.length; j++) 
+		{
+			for (int i = 0; i < Original[j].length; i++)
+			{
+				resultado[i][j] = Original[j][i];
+			}
+		}
+		return resultado;
 	}
 
 	// Ejercicio 7
@@ -227,6 +214,7 @@ public class UtilidadesMatrices {
 	 * @return: referencia a la matriz producto de las dos devuelve null si El
 	 *          número de columnas de A difiere del número de filas de B Corresponde
 	 *          a Colección 7, Ejercicio 7
+	 * @author Rodrigo Matatoros
 	 */
 	public static double[][] multiplicarMatrices(double[][] matriz1, double[][] matriz2) {
 

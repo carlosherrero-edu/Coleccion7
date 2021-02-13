@@ -3,6 +3,7 @@ import static org.junit.Assert.*;
 
 
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 
 import coleccion7.UtilidadesMatrices;
@@ -44,8 +45,11 @@ public class OperarMatricesTest {
 	@Test ( )
 	@DisplayName("Suma de 2 matrices de diferente dimensión")
 	public void sumarMatricesTest1(){
+		
+		Assertions.assertThrows(RuntimeException.class, 
+				()-> UtilidadesMatrices.sumarMatrices(matriz5d, matriz7d));
 	
-		assertNull(UtilidadesMatrices.sumarMatrices(matriz5d, matriz7d));
+	
 	}
 	
 	@Test
