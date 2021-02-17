@@ -7,19 +7,18 @@ public class ExpedienteAlumno {
 	private int num_asig;
 	private double[] calificaciones;
 	
-	public ExpedienteAlumno() {
-		//constructor por defecto. No asigna valores a las propiedades
-	}
+	
 
-	public ExpedienteAlumno(int nia, String nombreApe, int num_asig) {
-		this(); //llamada al constructor por defecto
-		
+	public ExpedienteAlumno(int nia, String nombreApe, int num_asig) throws IllegalArgumentException {
+	
 		if (nia >0 && num_asig >0) {
 			this.nia=nia;
 			this.nombreApe = nombreApe;
 			this.num_asig = num_asig;
 			
-		} 
+		}  else {
+			throw new IllegalArgumentException("<Los valores deben ser positivos");
+		}
 	}
 
 	public String obtenerDatosAlumno() {
