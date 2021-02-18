@@ -17,13 +17,13 @@ public class ExpedienteAlumno {
 			this.num_asig = num_asig;
 			
 		}  else {
-			throw new IllegalArgumentException("<Los valores deben ser positivos");
+			throw new IllegalArgumentException("Los valores deben ser positivos");
 		}
 	}
 
 	public String obtenerDatosAlumno() {
 
-		return this.nia + this.nombreApe;
+		return this.nia +"  "+ this.nombreApe;
 	}
 
 	public void asignarCalificaciones(double[] calificaciones) {
@@ -35,16 +35,18 @@ public class ExpedienteAlumno {
 
 	}
 
-	public double obtenerNotaMedia() {
-
-		double notaMedia = 0;
-
-		for (int i = 0; i < this.calificaciones.length; i++) {
-
-			notaMedia = (this.calificaciones[i] + notaMedia) / i;
-		}
-
-		return notaMedia;
+	public double obtenerNotaMedia(){
+		
+		
+			double notaMedia = 0;
+	
+			for (int i = 0; i < this.calificaciones.length; i++) {
+	
+				notaMedia = this.calificaciones[i] + notaMedia;
+			}
+	
+			return notaMedia/this.num_asig;
+		
 	}
 
 }

@@ -17,7 +17,8 @@ class ExpedienteAlumnoTest {
 	@Test
 	void testExpedienteAlumnoKO() {
 		//comprobamos que se lanza la excepción
-		assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IllegalArgumentException.class, 
+				() -> {
 			alumno1=new ExpedienteAlumno(123456,"Carlos Herrero",0);
 		    }
 		);
@@ -33,11 +34,28 @@ class ExpedienteAlumnoTest {
 	}
 
 	@Test
-	void testObtenerNotaMedia() {
+	void testObtenerNotaMedia1() {
 		double [] calificaciones= {6, 7, 8, 4, 5};
 		alumno1=new ExpedienteAlumno(123456,"Carlos Herrero",5);
 		alumno1.asignarCalificaciones(calificaciones);
-		assertEquals( 6.0, alumno1.obtenerNotaMedia(), 0.05);
+		
+			assertEquals( 6.0, alumno1.obtenerNotaMedia(), 0.05);
+		
+	}
+	
+	@Test
+	void testObtenerNotaMedia2() {
+		
+		alumno1=new ExpedienteAlumno(123456,"Carlos Herrero",5);
+		//las calificaciones están sin asignar
+		
+		assertThrows(NullPointerException.class, 
+				() -> {
+			alumno1.obtenerNotaMedia();
+		    }
+		);
+		
+
 	}
 
 }
