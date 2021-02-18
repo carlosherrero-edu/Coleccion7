@@ -37,7 +37,7 @@ public class ExpedienteAlumno {
 
 	public double obtenerNotaMedia(){
 		
-		
+			//tener en cuenta en JUnit que puede generarse un NullPointerException
 			double notaMedia = 0;
 	
 			for (int i = 0; i < this.calificaciones.length; i++) {
