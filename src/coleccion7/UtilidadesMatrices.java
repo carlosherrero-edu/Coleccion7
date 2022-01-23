@@ -2,6 +2,10 @@ package coleccion7;
 
 import java.util.Arrays;
 
+/**
+ * @author Alumno
+ *
+ */
 public class UtilidadesMatrices {
 
 	/*
@@ -257,6 +261,121 @@ public class UtilidadesMatrices {
 		// fin del recorrido del array
 		System.out.println(")");
 
+	}
+	
+	
+	/**
+	 * Método para obtener la diagonal principal de una matriz
+	 * @param matriz matriz cuadrada de números enteros
+	 * @return array con los elementos de la diagonal principal
+	 */
+	static int[] obtenerDiagonalPrincipal(int[][] matriz) {
+
+		int[] diagonalPrincipal = new int[matriz.length];
+		for (int i = 0; i < matriz.length; i++) {
+			for (int j = 0; j < matriz[i].length; j++) {
+				if (i == j) {
+					diagonalPrincipal[i] = matriz[i][j];
+				}
+			}
+		}
+
+		return diagonalPrincipal;
+	}
+
+	/**
+	 *  Método para obtener la diagonal secundaria de una matriz
+	 * @author Mauricio Rodríguez
+	 * @param matriz matriz cuadrada de números enteros
+	 * @return array con los elementos de la diagonal secundaria, desde la posición superior derecha
+	 */
+	static int[] obtenerDiagonalSecundaria(int[][] matriz) {
+
+		int[] diagonalSecundaria = new int[matriz.length];
+		for (int i = 0; i < matriz.length; i++) {
+			for (int j = 0; j < matriz[i].length; j++) {
+				if ((i + j) == (matriz.length - 1)) {
+					diagonalSecundaria[i] = matriz[i][j];
+				}
+			}
+		}
+
+		return diagonalSecundaria;
+	}
+	
+	
+	
+	/**
+	 * Método para sumar todos los términos de una lista de números enteros
+	 * @param lista matriz con la lista de números a sumar
+	 * @return resultado de la suma
+	 */
+	static int sumarLista(int[] lista) {
+		int suma=0;
+		for (int elemento:lista) {
+			suma += elemento;
+		}
+		
+		return suma;
+	}
+	
+	
+	
+	/**
+	 * Método para determinar si una matriz cuadrada es mágica
+	 * Corresponde al ejercicio 13 de la Colección 7
+	 * @param matriz matriz cuadrada de números enteros
+	 * @return true si es mágica, y false en otro caso
+	 */
+	public static boolean esMatrizMagica (int[][] matriz) {
+		
+		boolean esMagica=true;
+		
+		int tamanio= matriz.length;
+		
+		//calculamos la suma de la primera fila de la matriz
+		int suma= sumarLista(matriz[0]);
+		
+		//obtenemos la suma de las diagonales principal y secundaria
+		int sumaDiagonalPrincipal= sumarLista(obtenerDiagonalPrincipal(matriz));
+		int sumaDiagonalSecundaria= sumarLista(obtenerDiagonalSecundaria(matriz));
+		
+		if( sumaDiagonalPrincipal != suma || sumaDiagonalSecundaria != suma) {
+			//en este caso la matriz no puede ser mágica
+			esMagica=false;
+		} else {
+			//comprobamos ahora la suma por filas y columnas
+			//vamos sumando el resto de las filas, viendo si obtenemos el mismo valor
+			int fila=1;
+			while (fila<tamanio && esMagica) {
+				int sumaFila= sumarLista(matriz[fila]);
+				if (sumaFila != suma) {
+					esMagica=false;
+					//podríamos haber puesto un break, aunque no es necesario
+				}
+				fila++;
+			}
+			
+			if (esMagica) {
+				//si sigue siendo matriz mágica, sumanos por columnas
+				int col=0;
+				while (col<tamanio && esMagica) {
+					int [] listaCol = new int[tamanio];
+					for (int j=0; j<tamanio; j++) {
+						listaCol[j]= matriz[j][col];
+					}
+					
+					int sumaCol= sumarLista(listaCol);
+					if (sumaCol != suma) {
+						esMagica=false;
+						//podríamos haber puesto un break, aunque no es necesario
+					}
+					col++;
+				}
+			} //no hace falta colocar aquí un else
+		}
+		
+	return esMagica;
 	}
 
 }
