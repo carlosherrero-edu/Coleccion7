@@ -73,6 +73,10 @@ public class RecorrerMatriz {
 		return eleccion;
 
 	} // fin del mÃ©todo mostrarMenÃº
+	
+	static void recorrerLinea (int[] linea) {
+		
+	}
 
 	/**
 	 * @author Alfredo Puerta
@@ -169,29 +173,37 @@ public class RecorrerMatriz {
 	 */
 
 	static int[] obtenerPerimetro(int[][] matriz) {
+		
+		int tamanio= matriz.length;
+		
+		//calculo el número de elementos del perímetro e inicializo una matriz para almacenarlo
 
-		int[] perimetro = new int[matriz.length * 2 + (2 * (matriz.length - 2))];
+		int[] perimetro = new int[4*tamanio-4];
 		int posicion = 0;
 
-		// Recorrer la primera fila
-		for (int i = 0; i < matriz.length; i++) {
+		// Recorremos  la primera fila, excepto el último elemento
+		// el índice de fila es fijo, fila=0
+		for (int i = 0; i < tamanio-1; i++) {
 			perimetro[posicion] = matriz[0][i];
 			posicion++;
 		}
 
-		// Recorrer ultima columna
-		for (int i = 1; i < matriz.length; i++) {
-			perimetro[posicion] = matriz[i][matriz.length - 1];
+		// Recorremos la  ultima columna, excepto el último elemento
+		//el índice de columna es fijo, columna=tamanio-1
+		for (int i = 0; i < tamanio-1; i++) {
+			perimetro[posicion] = matriz[i][tamanio - 1];
 			posicion++;
 		}
-		// Recorrer la ultima fila
-		for (int i = matriz.length - 2; i >= 0; i--) {
-			perimetro[posicion] = matriz[matriz.length - 1][i];
+		// Recorremos la ultima fila en sentido inverso, de derecha a izquierda, excepto el último elemento
+		//el índice de fila es fijo, fila=tamanio-1
+		for (int i = tamanio- 1; i > 0; i--) {
+			perimetro[posicion] = matriz[tamanio - 1][i];
 			posicion++;
 		}
 
-		// Recorrer primera columna
-		for (int i = matriz.length - 2; i > 0; i--) {
+		// Recorremos la  primera columna en sentido inverso- de abajo hacia arriba- salvo el último elemento
+		// el índice de columna es fijo, columna=0
+		for (int i = tamanio-1; i > 0; i--) {
 			perimetro[posicion] = matriz[i][0];
 			posicion++;
 		}
