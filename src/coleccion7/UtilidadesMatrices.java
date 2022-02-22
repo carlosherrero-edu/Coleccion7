@@ -23,17 +23,13 @@ public class UtilidadesMatrices {
 		 */
 		int incremento = 1;
 
-		// System.out.println("La matriz queda configurada as√≠:" + "\n");
 
 		for (int i = 0; i < matrizEnteros.length; i++) {
 
-			// System.out.println("");
 
 			for (int k = 0; k < matrizEnteros[i].length; k++) {
 
 				matrizEnteros[i][k] = incremento;
-
-				// System.out.print(matrizEnteros[i][k] + " ");
 
 				incremento += 1;
 
@@ -56,12 +52,11 @@ public class UtilidadesMatrices {
 		// lo inicializamos a 1
 		int contador = 1;
 
-		// creamos antes del bucle la variable que contar√° las filas
-		int i = 0;
 
 		for (int j = 0; j < matrizEnteros[0].length; j++) {
-			for (i = 0; i < matrizEnteros.length; i++) {
-				matrizEnteros[i][j] = contador++;
+			for (int i = 0; i < matrizEnteros.length; i++) {
+				matrizEnteros[i][j] = contador;
+				contador++; 
 			}
 
 		}
@@ -81,7 +76,7 @@ public class UtilidadesMatrices {
 		int[][] matrizIdentidad;
 		int filas, columnas;
 		filas = dimension;
-		columnas = dimension;
+		columnas = dimension; //la matriz es cuadrada
 		matrizIdentidad = new int[filas][columnas];
 
 		for (int i = 0; i < filas; i++) {
@@ -95,7 +90,7 @@ public class UtilidadesMatrices {
 			}
 
 		}
-
+		// con este condicional ternario, si la dimensiÛn no es al menos 1, devuelve null
 		return dimension > 0 ? matrizIdentidad : null;
 	}
 
@@ -123,7 +118,7 @@ public class UtilidadesMatrices {
 		if (filas > 0) {
 			validarFilas = true;
 		} else {
-			System.out.println("El n√∫mero de filas que debe introducir debe ser impar");
+			System.out.println("El numero de filas que debe introducir debe ser impar");
 			return null;
 		}
 
@@ -176,7 +171,7 @@ public class UtilidadesMatrices {
 			}
 
 		} else {
-			throw new RuntimeException("Las matrices deben tener la misma cantidad de filas que columnas");
+			matrizResultado=null;   //en este caso, devolvemos una referencia nula
 		
 		}
 		return matrizResultado;
@@ -194,16 +189,16 @@ public class UtilidadesMatrices {
 	 */
 
 
-	public static double[][] trasponerMatriz(double[][] Original) 
+	public static double[][] trasponerMatriz(double[][] original) 
 	{
 
-		double[][] resultado = new double[Original[0].length][Original.length];
+		double[][] resultado = new double[original[0].length][original.length];
 
-		for (int j = 0; j < Original.length; j++) 
+		for (int j = 0; j < original.length; j++) 
 		{
-			for (int i = 0; i < Original[j].length; i++)
+			for (int i = 0; i < original[j].length; i++)
 			{
-				resultado[i][j] = Original[j][i];
+				resultado[i][j] = original[j][i];
 			}
 		}
 		return resultado;
@@ -221,11 +216,14 @@ public class UtilidadesMatrices {
 	 * @author Rodrigo Matatoros
 	 */
 	public static double[][] multiplicarMatrices(double[][] matriz1, double[][] matriz2) {
-
-		double[][] matrizNueva = new double[matriz1.length][matriz2[0].length];
+		/*
+		 * La matriz producto tiene el n˙mero de filas de matriz1
+		 * y el n˙mero de columnas de matriz2
+		 */
+		double[][] matrizProducto = new double[matriz1.length][matriz2[0].length];
 
 		if (matriz1.length != matriz2[0].length) {
-			matrizNueva = null;
+			matrizProducto = null;
 		} else {
 			for (int i = 0; i < matriz1.length; i++) {
 
@@ -233,7 +231,7 @@ public class UtilidadesMatrices {
 
 					for (int k = 0; k < matriz1[0].length; k++) {
 
-						matrizNueva[i][j] += (matriz1[i][k] * matriz2[k][j]);
+						matrizProducto[i][j] += (matriz1[i][k] * matriz2[k][j]);
 					}
 
 				}
@@ -241,7 +239,7 @@ public class UtilidadesMatrices {
 			}
 		}
 
-		return matrizNueva;
+		return matrizProducto;
 	}
 
 	/**
@@ -347,11 +345,12 @@ public class UtilidadesMatrices {
 			//comprobamos ahora la suma por filas y columnas
 			//vamos sumando el resto de las filas, viendo si obtenemos el mismo valor
 			int fila=1;
+			
 			while (fila<tamanio && esMagica) {
 				int sumaFila= sumarLista(matriz[fila]);
 				if (sumaFila != suma) {
 					esMagica=false;
-					//podr√≠amos haber puesto un break, aunque no es necesario
+					//podr√≠amos haber puesto un break, aunque no es necesario porque abandonar· el bucle al cambiar esMagica
 				}
 				fila++;
 			}
@@ -360,6 +359,7 @@ public class UtilidadesMatrices {
 				//si sigue siendo matriz m√°gica, sumanos por columnas
 				int col=0;
 				while (col<tamanio && esMagica) {
+					//copiamos todos los elementos de la columna "col" a una lista, para despuÈs sumarlos
 					int [] listaCol = new int[tamanio];
 					for (int j=0; j<tamanio; j++) {
 						listaCol[j]= matriz[j][col];
